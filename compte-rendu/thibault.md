@@ -13,4 +13,4 @@
 
 ## Problèmes rencontrés
 
--Configuration de certaines options de Grafana 
+- Configuration de certaines options de Grafana 
