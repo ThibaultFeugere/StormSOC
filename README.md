@@ -1,74 +1,55 @@
-# Doc d'installation 
+# Rendu de projet Labo sécu 2020
 
-## Installation Eve-ng
 
-Pour installer eve-ng il faut tout d'abord aller sur le site et télécharger le .ova ou .iso selon nos préférence d'hyperviseur. 
 
-Lors du premier démarrage le console prompt sera disponible et les identifiants par défaut sont : 
-``` bash
-root 
-eve
-```
+## Diffusion du documents
 
-une fois connecté on à plus qu'a suivre les instruction que la vm nous donne pour configurer le root password le dhcp et tout ce genre d'option.
+### Membres du projet
 
-une fois la configuration terminé la VM va redémarrer et tout sera prêt il faudra juste faire un petit 
-```bash 
-apt-get update 
-apt-get install
-```
+- Steven Dias
+- Thibault Feugere
 
-pour appliquer les dernieres mises à jours 
+### Liste des personnes autorisés à consulter ce document : 
 
-## Ajouter une image Cisco IOL sur eve-ng 
+- Steven Dias (Labo SSI)
+- Thibault Feugère (Labo SSI)
+- Louis Leveque (Labo SSI)
+- Alexandre Tricaud (Labo SSI)
 
-Télécharger au préalable un .bin de l'iol que vous souhaitez installé puis ensuite il faudra se connecter à la vm en SCP pour uploader le fichier dans le répertoire ``/opt/unetlab/addons/iol/bin``
+## Sommaire 
 
-ensuite il faudra fixer les permissions avec la commande ``/opt/unetlab/wrappers/unl_wrapper -a fixpermissions``
+1. [Présentation du sujet SOC](##Présentation-du-sujet-SOC)
+    1. [Le contexte](##Le-contexte)
+    2. [Qu'est ce qu'un SOC](##Qu'est-ce-qu'un-SOC)
+    3. [Problématique](##Problématique)
+2. [Présentation de StormSOC](##Présentation-de-StormSOC)
+    1. [Le Projet StormSOC](##Le-Projet-StormSOC)
+    2. [Les choix technologiques](##Les-choix-technologiques)
+    3. [Les problemes rencontrés](##Les-problemes-rencontrés)
+3. [Présentation technique du projet](##Présentation-technique-du-projet)
+    1. [Doc d'installation](##Doc-d'installation)
+    2. [Etudes des différentes techniques de détéction](##Etudes-des-différentes-techniques-de-détéction)
+    3. [Etudes des différentes techniques d'analyse de log](##Etudes-des-différentes-techniques-d'analyse-de-log)
+4. [Conclusion](##Conclusion) 
 
-par la suite il sera nécéssaire pour que les iol fonctionne bien avoir une licence, 
 
-pour cela on peut utiliser un petit script python qui va nous aider à les générer, (il faut l'exécuter sur la vm Eve-ng dans le répertoire ``/opt/unetlab/addons/iol/bin``)
-```python 
+A supprimer
 
-print("*********************************************************************")
-print("Cisco IOU License Generator - Kal 2011, python port of 2006 C version")
-print("Modified to work with python3 by c_d 2014")
-import os
-import socket
-import hashlib
-import struct
 
-# get the host id and host name to calculate the hostkey
-hostid=os.popen("hostid").read().strip()
-hostname = socket.gethostname()
-ioukey=int(hostid,16)
-for x in hostname:
- ioukey = ioukey + ord(x)
-print("hostid=" + hostid +", hostname="+ hostname + ", ioukey=" + hex(ioukey)[2:])
+  - Il nous faut vos rapports pour le 8 avril au plus tard à 23h59 GMT+1 à cette adresse : dir-lab-secu@cyber-stuff.net.
 
-# create the license using md5sum
-iouPad1 = b'\x4B\x58\x21\x81\x56\x7B\x0D\xF3\x21\x43\x9B\x7E\xAC\x1D\xE6\x8A'
-iouPad2 = b'\x80' + 39*b'\0'
-md5input=iouPad1 + iouPad2 + struct.pack('!i', ioukey) + iouPad1
-iouLicense=hashlib.md5(md5input).hexdigest()[:16]
 
-print("\nAdd the following text to ~/.iourc:")
-print("[license]\n" + hostname + " = " + iouLicense + ";\n")
-print("You can disable the phone home feature with something like:")
-print(" echo '127.0.0.127 xml.cisco.com' >> /etc/hosts\n"
-```
+Dans le rapport on veut :
+  - Une explication détaillée de votre sujet (Ce que vous voulez faire au début, la problématique que vous vouliez résoudre...).
 
-lorsque l'on éxécute le script il va nous donner un texte à coller dans le fichir iourc qu'il faudra créer avec un éditeur de texte 
+  - Une présentation générale de votre projet.
 
-## Ajout d'image linux sur Eve-ng
+  - La répartition du travail entre chaque membre du groupe.
 
-[Repo d'image linux](https://mega.nz/#F!y5YCwZCA!42_S__9wwPVO0zHIfC4xow)
+  - Les choix technologiques que vous avez pris.
 
-Même principe que pour une image Cisco IOL, il faut se connecter en SCP pour l'upload dans le répertoire ```cd /opt/unetlab/addons/qemu/```
+  - Une explication technique de ce que vous avez fait (un lien vers un git c'est cool, nous détailler les protocoles utilisés si vous êtes chaud, expliquer le fonctionnement des différents éléments de votre projet...).
 
-ensuite on fait un ```tar xzvf ``` de l'image 
+- Lors de la dernière séance (le 15/04/2020) nous passerons en vocal pour vous poser des questions sur vos projets respectifs.
 
-et on peut ``rm -f `` l'image tar.gz 
-
-ensuite on n'oublie pas de fix les permissions avec la commande ``/opt/unetlab/wrappers/unl_wrapper -a fixpermissions``
+- Il vous faudra aussi préparer une démonstration que vous nous présenterez pendant notre passage pendant la séance 10. Nous utiliserons le partage d'écran de discord pour cela.
