@@ -6,7 +6,7 @@ InfluxDB est une *Time Series Database*, qui permet de compresser un large volum
 
 Pour notre SOC, nous avons choisi la *TIG Stack* (Telegraf, Influxdb et Grafana). Influxdb vient stocker le données, il est donc recommandé de l'installer en premier pour plusieurs raisons. Telegraf ne tournera pas dans le vide par la suite et Grafana aura des données à montrer seulement quand Telegraf et Influxdb seront installés.
 
-## Installation
+## Installation de Influxdb sur Ubuntu 19.10
 
 /!\ Avant de commencer, il faut s'assurer que les ports 8086 et 8088 ne sont pas occupés.
 
@@ -25,9 +25,13 @@ On télécharger Influxdb.
 
 Influxdb est désormais installé mais celui-ci ne tourne pas encore, on peut le savoir en faisant la commande : `sudo systemctl status influxdb` et on voit : `inactive (dead)`
 
-On peut alors démarrer Influxdb avec la commande : `sudo service influxdb start`
+5. `sudo systemctl start influxdb`
 
-On aimerait bien que Influxdb se lance au démarrage de la machine, il suffit d'effectuer la commande : `sudo systemctl enable influxdb`
+On démarre Influxdb.
+
+On aimerait bien que Influxdb se lance au démarrage de la machine, il suffit d'effectuer la commande : 
+
+6. `sudo systemctl enable influxdb`
 
 Désormais, Influxdb a le statut : `Active (running)` et démarre au démarrage.
 
