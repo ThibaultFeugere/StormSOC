@@ -54,9 +54,9 @@ Dans le rapport on veut :
 
 
 
-# Présentation du sujet SOC
+## Présentation du sujet SOC
 
-## Le contexte
+### Le contexte
 
 De nos jours il y a de plus en plus de Systèmes d'informations qui voient le jour et les SI existant ne font que s'agrandir.
 Cette expansion présente des risques et de plus en plus de cyberattaques voient le jour, les motivations sont nombreuses :
@@ -71,7 +71,7 @@ Bref, la menace est de plus en plus grande et pour faire face à cette menace, i
 
 De ce fait, on a vu apparaître un mot qui revient trés souvent lorsque l'on parle de stratégie de défense : Le Security Operation Center associé à son anagramme SOC.
 
-## Qu'est ce qu'un SOC
+### Qu'est ce qu'un SOC
 
 Un Security Operation Center dans un SI, désigne une division qui assure la sécurité du SI et de ses informations.
 
@@ -90,12 +90,34 @@ Les capacités supplémentaires de certains SOC peuvent inclure l'analyse avanc�
 
 Les équipes SOC travaillent étroitement avec les équipes d’intervention afin de s’assurer que le problème de sécurité soit bien réglé une fois qu’il a été découvert.
 
-## Problématiques 
+### Problématiques 
 
 De nos jours, le terme SOC est un terme qui fait référence à un salle avec plein d'écrans et plein de graphique en temps réel accompagnés de beaux graphiques, mais un SOC ne se résume pas à cela c'est un métier à part entière et c'est dans cette problématique que nous avons voulus tenter l'expérience de découvrir ce métier et les technologies qui l'entoure au sein de notre projet labo sécu 2020.
 
-# Présentation du projet StormSOC
+## Présentation du projet StormSOC
 
-## Le Projet StormSOC
+### Le Projet StormSOC
 
 Dans le cadre du labo sécu 2020, nous avons décidé de monter une infrastructure SOC pour découvrir ce qu'est un SOC, démystifier le terme SOC qui est utilisé de manière abusive ces temps-ci et de découvrir le métier d'un analyste SOC.
+
+## Présentation technique du projet
+
+### Doc d'installation
+
+#### Installation de la TIG Stack
+
+Un SOC doit être visuel et l'outil de Data Viz Grafana nous a attiré. Nous sommes parti sur la Stack TIG qui est :
+
+- Telegraf (open source)
+- Influxdb (open source)
+- Grafana (open source)
+
+Cette Stack permet de monitorer une infrastructure.
+
+Vous pouvez trouver les procédés pour la mise en place de chaque outil :
+
+- [Installation de Influxdb](https://gitlab.com/thibaultfeugere/StormSOC/-/blob/master/installations/influxdb.md)
+- [Installation de Telegraf](https://gitlab.com/thibaultfeugere/StormSOC/-/blob/master/installations/telegraf.md)
+- [Installation de Grafana](https://gitlab.com/thibaultfeugere/StormSOC/-/blob/master/installations/grafana.md)
+
+Avec du recule, l'ajout de Kapacitor aurait pu être intéressant. L'alternative à Grafana, Chronograf aurait pu être une piste à tester. Nous pensons qu'un SOC doit constamment être mis à jour et amélioré. Il est donc intéressant de savoir les pistes à explorer / explorable.
